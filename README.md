@@ -12,5 +12,6 @@ puppet module install thekevjames-homebrew
 mkdir -p ~/code
 cd ~/code
 git clone https://github.com/matthewfallshaw/bootstrap-macbook.git
-/opt/puppetlabs/bin/puppet apply bootstrap/site.pp
+cd bootstrap-macbook
+puppet apply --test site.pp
 ```

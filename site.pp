@@ -36,6 +36,8 @@ package { 'puppet-lint':
 class { 'homebrew':
   user  => $username,
 }
+# make these install if not already present (this currently tries and fails to 
+# `brew upgrade`)
 $pkglist_brew = ['cask', 'coreutils', 'ctags', 'findutils', 'fswatch', 'fzf',
 'git', 'graphviz', 'imagemagick', 'm-cli', 'multimarkdown', 'mysql', 'node',
 'pcre2', 'postgresql', 'qrencode', 'unrar', 'moreutils', 'python3', 'rbenv',
@@ -46,15 +48,22 @@ package { $pkglist_brew:
 }
 
 $pkglist_brewcask = ['macvim', 'betterzipql', 'electrum', 'rowanj-gitx',
-'gpg-suite', 'grandperspective', 'keybase', 'keycue', 'launchcontrol',
-'libreoffice', 'qlcolorcode', 'qlmarkdown', 'qlstephen', 'quicklook-csv',
-'quicklook-json', 'rstudio', 'skype', 'suspicious-package', 'unison',
-'virtualbox', 'vagrant', 'xquartz']
+'gpg-suite', 'grandperspective', 'hammerspoon', 'keybase', 'keycue',
+'launchcontrol', 'libreoffice', 'qlcolorcode', 'qlmarkdown', 'qlstephen',
+'quicklook-csv', 'quicklook-json', 'rstudio', 'skype', 'suspicious-package',
+'unison', 'virtualbox', 'vagrant', 'xquartz']
 package { $pkglist_brewcask:
   ensure   => latest,
   provider => brewcask,
 }
 
+
+# luarocks
+# brew tap homebrew/versions
+# brew install lua53
+#
+# luarocks-5.3 install inspect
+# luarocks-5.3 install lua-websockets
 
 $home = "/Users/${username}"
 
